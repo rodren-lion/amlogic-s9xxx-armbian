@@ -173,10 +173,10 @@ on:
       kernel_repo:
         description: "Set the kernel repository."
         required: false
-        default: "ophub/kernel"
+        default: "rodren-lion/kernel"
         type: choice
         options:
-          - ophub/kernel
+          - rodren-lion/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
@@ -206,12 +206,12 @@ on:
       builder_name:
         description: "Set Armbian builder signature."
         required: false
-        default: "ophub"
+        default: "rodren-lion"
         type: choice
         options:
           - ophub
           - angel
-          - yourname
+          - godsun
 
 env:
   TZ: America/New_York
