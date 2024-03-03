@@ -60,7 +60,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -godsun
 
 env:
   TZ: America/New_York
@@ -93,7 +93,7 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: rodren-lion/amlogic-s9xxx-armbian@main
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
