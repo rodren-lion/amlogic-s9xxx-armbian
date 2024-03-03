@@ -167,10 +167,10 @@ on:
       kernel_repo:
         description: "Set the kernel repository."
         required: false
-        default: "ophub/kernel"
+        default: "rodren-lion/kernel"
         type: choice
         options:
-          - ophub/kernel
+          - rodren-lion/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
@@ -205,7 +205,7 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - godsun
 
 env:
   TZ: America/New_York
@@ -292,14 +292,14 @@ jobs:
 
           mkdir -p /builder/build
           ln -sf /builder/build ${GITHUB_WORKSPACE}/build
-          ln -sf /builder/build /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/build
+          ln -sf /builder/build /home/runner/work/_actions/rodren-lion/amlogic-s9xxx-armbian/main/build
 
           sudo timedatectl set-timezone "${TZ}"
           echo "build_tag=Armbian${set_release}_${{ inputs.armbian_storage }}_$(date +"%Y.%m")" >> ${GITHUB_OUTPUT}
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Rebuild Armbian
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: rodren-lion/amlogic-s9xxx-armbian@main
         if: ${{ env.ARMBIAN_URL }} != '' && !cancelled()
         with:
           build_target: armbian
@@ -313,7 +313,7 @@ jobs:
           builder_name: ${{ inputs.builder_name }}
 
       - name: Upload Armbian image to Release
-        uses: ncipollo/release-action@main
+        uses: rodren-lion/release-action@main
         if: ${{ env.PACKAGED_STATUS }} == 'success' && !cancelled()
         with:
           tag: ${{ steps.down.outputs.build_tag }}
